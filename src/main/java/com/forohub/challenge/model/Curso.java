@@ -6,20 +6,20 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 
-
 @Entity
-@Table(name = "perfiles")
-public class Perfil {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@Table(name = "cursos")
+public class Curso {
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
-    @ManyToMany(mappedBy = "perfiles")
-    private List<Usuario> usuarios;
+
+    @Enumerated(EnumType.STRING)
+    private Categoria_Curso categoria;
+
 }
