@@ -3,7 +3,7 @@ package com.forohub.challenge.dto.usuario;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-public record IniciarSecionDTO(
+public record RegistrarUsuarioDTO(
       @NotBlank @Email String email,
       @NotBlank  String clave
 ) {
