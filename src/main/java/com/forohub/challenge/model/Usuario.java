@@ -36,6 +36,12 @@ public class Usuario implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "id_perfil"))
    private List<Perfil>perfiles;
 
+    @OneToMany(mappedBy = "autor")
+    private List<Respuesta> respuestas;
+
+    @OneToMany(mappedBy = "autor")
+    private List<Topico> topicos;
+
 
 
     @Override
