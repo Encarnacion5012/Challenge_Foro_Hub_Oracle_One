@@ -26,8 +26,17 @@ public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String login;
+    private String nombre;
+    private  String email;
     private String clave;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "usuarios_perfiles",
+            joinColumns= @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_perfil"))
+   private List<Perfil>perfiles;
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -41,7 +50,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getUsername() {
-        return login;
+        return email;
     }
 
     @Override
