@@ -1,13 +1,12 @@
 package com.forohub.challenge.model;
 
+import com.forohub.challenge.dto.usuario.PerfilDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -22,4 +21,10 @@ public class Perfil {
     private String nombre;
     @ManyToMany(mappedBy = "perfiles")
     private List<Usuario> usuarios;
+
+    public Perfil(PerfilDTO perfilDTO){
+        this.nombre = perfilDTO.nombre();
+    }
 }
+
+
