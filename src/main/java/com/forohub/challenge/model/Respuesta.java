@@ -1,15 +1,14 @@
 package com.forohub.challenge.model;
 
+import com.forohub.challenge.dto.respuesta.RegistroRespuestaDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
 @EqualsAndHashCode(of = "id")
 
 @Entity
@@ -31,6 +30,13 @@ public class Respuesta {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_topico")
     private Topico topico;
+
+
+    public Respuesta(RegistroRespuestaDTO respuestaDTO){
+        this.mensaje = respuestaDTO.mensaje();
+        this.fecha_Creacion = respuestaDTO.fecha_Creacion();
+        this.solucion = respuestaDTO.solucion();
+    }
 
 
 }
