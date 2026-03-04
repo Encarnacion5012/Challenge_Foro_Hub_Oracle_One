@@ -1,0 +1,1 @@
+alter table respuestas add activo tinyint;

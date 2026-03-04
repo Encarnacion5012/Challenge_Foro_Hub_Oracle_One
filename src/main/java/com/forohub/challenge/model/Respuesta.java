@@ -1,5 +1,6 @@
 package com.forohub.challenge.model;
 
+import com.forohub.challenge.dto.respuesta.ActualizarRespuestaDTO;
 import com.forohub.challenge.dto.respuesta.RegistroRespuestaDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -31,12 +32,30 @@ public class Respuesta {
     @JoinColumn(name = "id_topico")
     private Topico topico;
 
+    private Boolean activo;
+
 
     public Respuesta(RegistroRespuestaDTO respuestaDTO){
         this.mensaje = respuestaDTO.mensaje();
         this.fecha_Creacion = respuestaDTO.fecha_Creacion();
         this.solucion = respuestaDTO.solucion();
+        activo = true;
     }
 
+    public void actualizarRespuesta(ActualizarRespuestaDTO respuestaDTO){
+        if (respuestaDTO.mensaje() != null){
+            this.mensaje = respuestaDTO.mensaje();
+        }
+        if (respuestaDTO.solucion() != null){
+            this.solucion = respuestaDTO.solucion();
+        }
+
+        System.out.println("Uusario actualizado corectamente");
+    }
+
+
+    public void eliminarResouesta(){
+        this.activo = false;
+    }
 
 }
