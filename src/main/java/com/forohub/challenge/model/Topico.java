@@ -1,10 +1,9 @@
 package com.forohub.challenge.model;
 
+import com.forohub.challenge.dto.topico.RegistroTopicoDTO;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@Setter
 
 
 @Entity
@@ -38,7 +38,27 @@ public class Topico {
 
 
     @OneToMany(mappedBy = "topico")
-
     List<Respuesta> respuestas;
+
+    private Boolean activo;
+
+    public Topico(RegistroTopicoDTO topicoDTO){
+        this.titulo = topicoDTO.titulo();
+        this.mensaje = topicoDTO.mensaje();
+        this.fecha_Creacion = topicoDTO.fecha_Creacion();
+        this.status = topicoDTO.estatus();
+        this.activo = true;
+    }
+
+    public void actualizarTopico(Topico_Estatus status){
+        if (status!= null){
+            this.status = status;
+            System.out.println("Topico actualizado Correctamente");
+        }
+    }
+
+    public void elimnarTopico(){
+        this.activo = false;
+    }
 
 }
